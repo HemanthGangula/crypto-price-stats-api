@@ -45,4 +45,9 @@ curl http://127.0.0.1:8000/crypto/matic-network
 curl http://127.0.0.1:8000/crypto/history/bitcoin
 curl http://127.0.0.1:8000/crypto/history/ethereum
 curl http://127.0.0.1:8000/crypto/history/matic-network
+
+curl "http://127.0.0.1:8000/deviation?coin=bitcoin"
+curl "http://127.0.0.1:8000/deviation?coin=ethereum"
+curl "http://127.0.0.1:8000/deviation?coin=matic-network"
+
 ```

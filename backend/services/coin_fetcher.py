@@ -30,14 +30,20 @@ def fetch_and_store():
                 "price_change_percentage_24h": coin["price_change_percentage_24h"],
                 "timestamp": datetime.now(timezone.utc),
             }
+            # Insert the new snapshot
             collection.insert_one(snapshot)
             print(f"Inserted data for {coin['id']}: {snapshot}")
+
+            # Remove old records and keep only the latest 100
+            collection.delete_many({
+                "coin_id": coin["id"],
+                "_id": {"$nin": [doc["_id"] for doc in collection.find({"coin_id": coin["id"]}).sort("timestamp", -1).limit(100)]}
+            })
 
     except requests.exceptions.HTTPError as http_err:
         print(f"HTTP Error: {http_err}")
     except Exception as e:
         print(f"Error: {e}")
-
 
 if __name__ == "__main__":
     fetch_and_store()
