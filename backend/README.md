@@ -16,12 +16,12 @@ This project fetches cryptocurrency data using the CoinGecko API and provides AP
 
 Data is stored in MongoDB. To run MongoDB in a Docker container, use the following command:
 ```bash
-docker run --name mongodb-container -d -p 27017:27017 mongo
+docker run -d --name mongodb -p 27017:27017 mongo
 ```
 
-## Run the coin Fetcher code in /src/coin_fetcher.py
+## Run the coin Fetcher code in /services/coin_fetcher.py
 ```bash
-python3 src/coin_fetcher.py
+python3 services/coin_fetcher.py
 ```
 so the data will be fetched and stored in the MongoDB.
 
@@ -32,7 +32,7 @@ so the data will be fetched and stored in the MongoDB.
 
 ### Run the server
 ```bash
-uvicorn app:app –reload
+uvicorn app:app --reload
 ```
 from /backend directory
 
